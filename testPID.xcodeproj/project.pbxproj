@@ -14,6 +14,12 @@
 		E57F615A1F160945008A99D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57F61581F160945008A99D0 /* LaunchScreen.storyboard */; };
 		E57F61651F160945008A99D0 /* testPIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F61641F160945008A99D0 /* testPIDTests.swift */; };
 		E57F61701F160945008A99D0 /* testPIDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F616F1F160945008A99D0 /* testPIDUITests.swift */; };
+		E57F61BF1F1657DC008A99D0 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F61B81F1657DC008A99D0 /* Result.swift */; };
+		E57F61C01F1657DC008A99D0 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F61B91F1657DC008A99D0 /* Socket.swift */; };
+		E57F61C11F1657DC008A99D0 /* TCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F61BB1F1657DC008A99D0 /* TCPClient.swift */; };
+		E57F61C21F1657DC008A99D0 /* UDPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F61BC1F1657DC008A99D0 /* UDPClient.swift */; };
+		E57F61C31F1657DC008A99D0 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = E57F61BD1F1657DC008A99D0 /* ytcpsocket.c */; };
+		E57F61C41F1657DC008A99D0 /* yudpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = E57F61BE1F1657DC008A99D0 /* yudpsocket.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,14 @@
 		E57F616B1F160945008A99D0 /* testPIDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testPIDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57F616F1F160945008A99D0 /* testPIDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPIDUITests.swift; sourceTree = "<group>"; };
 		E57F61711F160945008A99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E57F61B71F1657DC008A99D0 /* testPID-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "testPID-Bridging-Header.h"; sourceTree = "<group>"; };
+		E57F61B81F1657DC008A99D0 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = SOURCE_ROOT; };
+		E57F61B91F1657DC008A99D0 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = SOURCE_ROOT; };
+		E57F61BA1F1657DC008A99D0 /* SwiftSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftSocket.h; sourceTree = SOURCE_ROOT; };
+		E57F61BB1F1657DC008A99D0 /* TCPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPClient.swift; sourceTree = SOURCE_ROOT; };
+		E57F61BC1F1657DC008A99D0 /* UDPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPClient.swift; sourceTree = SOURCE_ROOT; };
+		E57F61BD1F1657DC008A99D0 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = SOURCE_ROOT; };
+		E57F61BE1F1657DC008A99D0 /* yudpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yudpsocket.c; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +114,17 @@
 				E57F614F1F160945008A99D0 /* AppDelegate.swift */,
 				E57F61511F160945008A99D0 /* ViewController.swift */,
 				E57F61531F160945008A99D0 /* Main.storyboard */,
+				E57F61B81F1657DC008A99D0 /* Result.swift */,
+				E57F61B91F1657DC008A99D0 /* Socket.swift */,
+				E57F61BA1F1657DC008A99D0 /* SwiftSocket.h */,
+				E57F61BB1F1657DC008A99D0 /* TCPClient.swift */,
+				E57F61BC1F1657DC008A99D0 /* UDPClient.swift */,
+				E57F61BD1F1657DC008A99D0 /* ytcpsocket.c */,
+				E57F61BE1F1657DC008A99D0 /* yudpsocket.c */,
 				E57F61561F160945008A99D0 /* Assets.xcassets */,
 				E57F61581F160945008A99D0 /* LaunchScreen.storyboard */,
 				E57F615B1F160945008A99D0 /* Info.plist */,
+				E57F61B71F1657DC008A99D0 /* testPID-Bridging-Header.h */,
 			);
 			path = testPID;
 			sourceTree = "<group>";
@@ -194,6 +216,7 @@
 					E57F614B1F160945008A99D0 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 423NT4MUQS;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					E57F615F1F160945008A99D0 = {
@@ -262,8 +285,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57F61C41F1657DC008A99D0 /* yudpsocket.c in Sources */,
+				E57F61C21F1657DC008A99D0 /* UDPClient.swift in Sources */,
+				E57F61C01F1657DC008A99D0 /* Socket.swift in Sources */,
+				E57F61C11F1657DC008A99D0 /* TCPClient.swift in Sources */,
+				E57F61BF1F1657DC008A99D0 /* Result.swift in Sources */,
 				E57F61521F160945008A99D0 /* ViewController.swift in Sources */,
 				E57F61501F160945008A99D0 /* AppDelegate.swift in Sources */,
+				E57F61C31F1657DC008A99D0 /* ytcpsocket.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,11 +446,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 423NT4MUQS;
 				INFOPLIST_FILE = testPID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = imnu.edu.cn.testPID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "testPID/testPID-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -430,11 +462,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 423NT4MUQS;
 				INFOPLIST_FILE = testPID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = imnu.edu.cn.testPID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "testPID/testPID-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -516,6 +550,7 @@
 				E57F61761F160945008A99D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E57F61771F160945008A99D0 /* Build configuration list for PBXNativeTarget "testPIDTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +559,7 @@
 				E57F61791F160945008A99D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E57F617A1F160945008A99D0 /* Build configuration list for PBXNativeTarget "testPIDUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +568,7 @@
 				E57F617C1F160945008A99D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
