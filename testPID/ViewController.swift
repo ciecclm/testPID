@@ -29,6 +29,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pidd3: UIStepper!
     @IBOutlet weak var pidd4: UIStepper!
     
+    @IBOutlet weak var angle: UIStepper!
+    
+    @IBOutlet weak var connectbtn: UIButton!
     @IBAction func steperact(_ sender: Any) {
         stepperValueIschanged()
         
@@ -40,13 +43,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func connectiontoIP(_ sender: Any) {
         client = TCPClient(address: IPaddress.text!, port: Int32(IPport.text!)!)
+        guard let client = client else { return }
+
+        switch client.connect(timeout: 2) {
+        case .success:
+            connectbtn.isUserInteractionEnabled=false
+            receivemsg.text = String("已连接")
+        case .failure(let error):
+            receivemsg.text = String(describing: error)
+        }
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         IPaddress.delegate=self
         IPport.delegate=self
-        IPaddress.text="192.168.0.119"
+        IPaddress.text="192.168.0.36"
         IPport.text="8899"
         
     }
@@ -55,25 +67,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         Ptext.text="当前值为：\(pidp1.value+pidp2.value+pidp3.value+pidp4.value)"
         Itxt.text="当前值为：\(pidi1.value+pidi2.value+pidi3.value+pidi4.value)"
         Dtxt.text="当前值为：\(pidd1.value+pidd2.value+pidd3.value+pidd4.value)"
+        IPport.text="\(angle.value)"
         /*
         let mp=(pidp1.value+pidp2.value+pidp3.value+pidp4.value) as Int
         let mi=(pidi1.value+pidi2.value+pidi3.value+pidi4.value) as Int
         let md=(pidd1.value+pidd2.value+pidd3.value+pidd4.value) as Int
         */
-        let tempstrp=String(format:"%04.0f",pidp1.value+pidp2.value+pidp3.value+pidp4.value)
+        let tempstrp=String(format:"%06.2f",pidp1.value+pidp2.value+pidp3.value+pidp4.value)
         print(tempstrp)
-        //let tempstrp=String(format:"%04d%04d%04d%04d",1,2,3,4)
-
-        let tempstri=String(format:"%04.0f",pidi1.value+pidi2.value+pidi3.value+pidi4.value)
-        let tempstrd=String(format:"%04.0f",pidd1.value+pidd2.value+pidd3.value+pidd4.value)
+        let tempstri=String(format:"%06.2f",pidi1.value+pidi2.value+pidi3.value+pidi4.value)
+        let tempstrd=String(format:"%06.2f",pidd1.value+pidd2.value+pidd3.value+pidd4.value)
+        let tempsangle=String(format:"%06.2f",angle.value)
         
-        let sendmessage=tempstrp+tempstri+tempstrd
+        let sendmessage=tempstrp+tempstri+tempstrd+tempsangle
         print("send:"+sendmessage)
-        
         
         guard let client = client else { return }
         
-        switch client.connect(timeout: 10) {
+        switch client.connect(timeout: 2) {
         case .success:
             appendToTextField(string: "Connected to host \(client.address)")
             if let response = sendRequest(string: sendmessage, using: client) {
@@ -116,8 +127,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func readResponse(from client: TCPClient) -> String? {
-        guard let response = client.read(1024*10) else { return nil }
-        
+        guard let response = client.read(20) else { return nil }
+       // receivemsg.text=String(bytes: response, encoding: .utf8)
         return String(bytes: response, encoding: .utf8)
     }
     
